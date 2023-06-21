@@ -1,0 +1,110 @@
+Aula:
+No app.jsx:
+
+import React from "react";
+
+
+const App = () => {
+  // Array em JSX
+  const filmes = ["Before Sunrise", "Before Sunset", "Before Midnight"];
+
+  return (
+    // Retornando os itens do array, utilizando o MAP.
+    <ul>
+      {filmes.map((filme) => {
+        return <li key={filme}>{filme}</li>;
+      })}
+    </ul>
+  );
+};
+
+//Lidando com Array de Objetos
+const App = () => {
+  // Array de Objetos em JSX
+  const livros = [
+    { nome: "A Game of Thrones", ano: 1996 },
+    { nome: "A Clash of Kings", ano: 1998 },
+    { nome: "A Storm of Swords", ano: 2000 },
+  ];
+
+  // Trazendo os indices do array de objetos, usando o map. E Destruturação na func de callback.
+  return (
+    <ul>
+      {livros.map(({ nome, ano }) => {
+        return (
+          <li key={nome}>
+            {nome}, {ano}
+          </li>
+        );
+      })}
+    </ul>
+  );
+
+  // Usando o filter junto do map, para trazer livros em que o ano é maior que 1998
+  // return (
+  //   <ul>
+  //     {livros
+  //       .filter((livro) => livro.ano >= 1998)
+  //       .map((livro) => {
+  //         return (
+  //           <li key={livro.nome}>
+  //             {livro.nome}, {livro.ano}
+  //           </li>
+  //         );
+  //       })}
+  //   </ul>
+  // );
+};
+
+export default App;
+
+-----------------
+
+Exercícios:
+
+// Organize os produtos como mostrado no vídeo
+// Mostre apenas produtos que forem mais caros que R$ 1500
+const App = () => {
+  // Organize os produtos como mostrado no vídeo
+  // Mostre apenas produtos que forem mais caros que R$ 1500
+  const produtos = [
+    {
+      id: 1,
+      nome: "Smartphone",
+      preco: "R$ 2000",
+      cores: ["#29d8d5", "#252a34", "#fc3766"],
+    },
+    {
+      id: 2,
+      nome: "Notebook",
+      preco: "R$ 3000",
+      cores: ["#ffd045", "#d4394b", "#f37c59"],
+    },
+    {
+      id: 3,
+      nome: "Tablet",
+      preco: "R$ 1500",
+      cores: ["#365069", "#47c1c8", "#f95786"],
+    },
+  ];
+
+  return (
+    <section>
+      {produtos
+        .filter((produto) => Number(produto.preco.replace("R$ ", "")) > 1500)
+        .map((produto) => (
+          <div key={produto.id}>
+            <h1>{produto.nome}</h1>
+            <p>{produto.preco}</p>
+            <ul>
+              {produto.cores.map((cor) => (
+                <li key={cor} style={{ backgroundColor: cor, color: "white" }}>
+                  {cor}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+    </section>
+  );
+};

@@ -1,0 +1,101 @@
+Aula:
+No App.jsx:
+
+import React from "react";
+
+// Assim como uma função pode receber argumentos, podemos também passar argumentos aos componentes.
+// Esses são conhecidos como propriedades ou props.
+
+// Uso das props:
+const Titulo = (props) => {
+  return <h1>{props.texto}</h1>;
+};
+
+// Uso das props com destruturação:
+const Titulo2 = ({ cor, texto, children }) => {
+  return (
+    <h1 style={{ color: cor }}>
+      {texto}, {children}
+    </h1>
+  );
+};
+
+
+const App = () => {
+  return (
+    <React.Fragment>
+      <Titulo texto="Meu Título 1" />
+      <Titulo texto="Meu Título 2" />
+      <Titulo2 cor="blue" texto="Meu Título 3" />
+    </React.Fragment>
+  );
+};
+
+export default App;
+
+--------------------------------------------------------------
+// Props Children: O children, é o conteúdo que vai dentro da tag do componente quando ela é aberta e fechada.
+
+import React from "react";
+
+const Titulo2 = ({ cor, texto, children }) => {
+  return (
+    <h1 style={{ color: cor }}>
+      {texto}, {children}
+    </h1>
+  );
+};
+
+const App = () => {
+  return (
+    <React.Fragment>
+      <Titulo2 cor="green" texto="Meu Título 5">
+        <p>Isso é o Children</p>
+      </Titulo2>
+    </React.Fragment>
+  );
+};
+
+export default App;
+--------------------------------------------------------------
+
+Rest e Spread:
+Usamos o rest e spread quando não sabemos todas as propriedades que um componente pode receber.
+
+
+No arquivo Input.jsx: 
+import React from "react";
+
+
+//Nesse exemplo o props, está sendo usado para pegar um atributo que vem depois do ID.
+// No caso o required.
+
+const Input = ({ label, id, ...props }) => {
+  console.log(props);
+  return (
+    <div style={{ margin: "1rem 0" }}>
+      <label htmlFor={id}>{label}</label>
+      <input id={id} type="text" {...props} />
+    </div>
+  );
+};
+
+export default Input;
+
+
+No Arquivo Form.jsx:
+import React from "react";
+import Input from "./Input";
+import Button from "./Button";
+
+const Form = () => {
+  return (
+    <div>
+      <Input id="email" label="E-mail" required />
+      <Input id="password" type="password" label="Password" />
+      <Button />
+    </div>
+  );
+};
+
+export default Form;

@@ -1,0 +1,21 @@
+Aula:
+No App.jsx:
+import React from "react";
+
+const App = () => {
+  function handleClick(event) {
+    alert("Comprou: " + event.target.innerText);
+  }
+
+  return (
+    <div>
+      {/* Para usarmos um evento em React, temos que passar ele em camelCase. */}
+      <button onClick={handleClick}>Camisa</button>
+      <button onClick={handleClick}>Bermuda</button>
+    </div>
+  );
+};
+
+export default App;
+
+// Os eventos que o react não dá suporte, devem ser usados atravpes de hooks.

@@ -1,0 +1,105 @@
+Aula:
+No app.jsx:
+
+import React from "react";
+
+const App = () => {
+  const nome = "Mickael";
+  const ativo = false;
+  // CSS em JSX
+  const estilo = {
+    color: "blue",
+    fontSize: "22px",
+    fontFamily: "Arial, Helvetica, sans-serif",
+  };
+
+  // Criação de function
+  function alerta(alerta) {
+    return alerta;
+  }
+  const carro = {
+    marca: "Ford",
+    rodas: 4,
+    cor: "Vermelho",
+  };
+
+  return (
+    <>
+      {/* Interpolção de variavel, uso de ternario, e estiização do elemento */}
+      <p className={ativo ? "ativo" : "inativo"} style={estilo}>
+        Meu nome é {nome}
+      </p>
+
+      <a href="https://www.origamid.com" target="_blank" title="Site Origamid">
+        Origamid
+      </a>
+
+      {/* Uso de function */}
+      {alert("Mickael")}
+
+      {/* Acessando items de objetos */}
+      <p>{carro.cor}</p>
+      <p>{carro.marca}</p>
+    </>
+  );
+};
+
+-------------
+
+Exercício:
+// Mostre os dados da aplicação, como aprensetado no vídeo
+// Não utilize CSS externo, use o style para mudar as cores
+// Se a situação estiver ativa pinte de verde, inativa vermelho
+// Se o gasto for maior que 10000 mostre uma mensagem
+
+const estiloAtivo = "green";
+
+const estiloInativo = "red";
+
+const luana = {
+  cliente: "Luana",
+  idade: 27,
+  compras: [
+    { nome: "Notebook", preco: "R$ 2500" },
+    { nome: "Geladeira", preco: "R$ 3000" },
+    { nome: "Smartphone", preco: "R$ 1500" },
+  ],
+  ativa: true,
+};
+
+const mario = {
+  cliente: "Mario",
+  idade: 31,
+  compras: [
+    { nome: "Notebook", preco: "R$ 2500" },
+    { nome: "Geladeira", preco: "R$ 3000" },
+    { nome: "Smartphone", preco: "R$ 1500" },
+    { nome: "Guitarra", preco: "R$ 3500" },
+  ],
+  ativa: false,
+};
+
+const App = () => {
+  const dados = mario;
+
+  const total = dados.compras
+    .map((item) => Number(item.preco.replace("R$ ", "")))
+    .reduce((a, b) => a + b);
+    
+  return (
+    <div>
+      <p>Cliente: {dados.cliente}</p>
+
+      <p>Idade: {dados.idade}</p>
+
+      <p>
+        Situação:{" "}
+        <span style={{ color: dados.ativa ? estiloAtivo : estiloInativo }}>
+          {dados.ativa ? "Ativa" : "Inativa"}
+        </span>
+      </p>
+
+      <p>{total >= 10000 && alert("Você gastou mais de 10000")}</p>
+    </div>
+  );
+};

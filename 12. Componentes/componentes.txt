@@ -1,0 +1,84 @@
+Aula:
+No App.jsx:
+import React from "react";
+
+// 1: Os componentes são usados para dividir a aplicação. para facilitar a manutenção do mesmo.
+// 2: Não existe limite para a composição de componentes, eles podem ser desde componentes 
+gerais como Header e Footer, até micro componentes como Input e Button.
+// 3: É recomendando quebrar a interface no máximo de componentes possíveis. Desde que seja necessário.
+
+Para criar um componente, você deve criar um novo arquivo js/jsx. E exportar ele para o arquivo
+App.jsx. Para que o componente possa ser utilizado.
+
+Criei um arquivo footer.jsx:
+import React from 'react'
+
+const Footer = () => {
+  return (
+    <div>Footer</div>
+  )
+}
+
+export default Footer;
+
+Depois importei esse arquivo no App.jsx:
+
+import React from "react";
+import Header from "./Header.jsx";
+import Footer from "./Footer.jsx";
+
+const App = () => {
+  return (
+    <div>
+      <Header />
+      App
+      <Footer/>
+    </div>
+  );
+};
+
+export default App;
+
+-------------------------------
+
+// Um componente sempre tem que retornar algo. Como String, JSX, Null etc. 
+
+const App = () => {
+  // Também pdodemos criar componentes internos.
+  const Teste = () => {
+    var active = false;
+
+    if (active) {
+      return <p>teste</p>;
+    } else {
+      return null;
+    }
+  };
+
+  return (
+    <div>
+      <Header />
+      App
+      <Footer />
+      <Teste />
+    </div>
+  );
+};
+
+------------------------
+
+//  React Fragment: 
+
+Um componente deve sempre retornar um elemento único no return.
+ Caso você deseje retornar mais de um elemento, 
+envolva os mesmos em uma div ou dentro do <React.Fragment></React.Fragment> ou <></>
+
+const App = () => {
+  return (
+    <React.Fragment>
+      <Header />
+      App
+      <Footer />
+    </React.Fragment>
+  );
+};
